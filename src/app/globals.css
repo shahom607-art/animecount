@@ -1,5 +1,98 @@
 @import "tailwindcss";
 
+/* ========== LIGHT MODE COLOR VARIABLE FLIPS ========== */
+html.light {
+  --color-zinc-50: #09090b;
+  --color-zinc-100: #18181b;
+  --color-zinc-200: #27272a;
+  --color-zinc-300: #3f3f46;
+  --color-zinc-400: #52525b;
+  --color-zinc-500: #71717a;
+  --color-zinc-600: #a1a1aa;
+  --color-zinc-700: #d4d4d8;
+  --color-zinc-800: #e4e4e7;
+  --color-zinc-900: #f4f4f5;
+  --color-zinc-950: #ffffff;
+
+  background-color: #ffffff !important;
+  color: #09090b !important;
+}
+
+/* Force body styling in light mode */
+html.light body {
+  background-color: #ffffff !important;
+  color: #09090b !important;
+}
+
+/* ========== TEXT VISIBILITY CONTRAST FIXES FOR LIGHT MODE ========== */
+html.light .text-white,
+html.light .text-zinc-100,
+html.light .text-zinc-200,
+html.light .text-zinc-300,
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light p.text-zinc-200,
+html.light span.text-zinc-100,
+html.light span.text-zinc-200 {
+  color: #09090b !important;
+}
+
+html.light .text-zinc-400 {
+  color: #4b5563 !important; /* Slate-600 for highly readable subtitles */
+}
+
+html.light .text-zinc-500 {
+  color: #6b7280 !important; /* Gray-500 */
+}
+
+/* Card & Background Overrides for complete visibility */
+html.light .bg-zinc-950 {
+  background-color: #ffffff !important;
+}
+
+html.light .bg-zinc-900,
+html.light .bg-zinc-900\/40,
+html.light .bg-zinc-900\/50,
+html.light .bg-zinc-900\/60,
+html.light .bg-zinc-900\/80,
+html.light .bg-zinc-900\/90 {
+  background-color: #f3f4f6 !important; /* Light gray card background */
+}
+
+html.light .bg-zinc-800,
+html.light .bg-zinc-800\/40,
+html.light .bg-zinc-800\/60,
+html.light .bg-zinc-800\/80,
+html.light .bg-zinc-800\/90 {
+  background-color: #e5e7eb !important;
+}
+
+/* Border Overrides for clean outlines */
+html.light .border-zinc-800,
+html.light .border-zinc-800\/50,
+html.light .border-zinc-800\/60,
+html.light .border-zinc-800\/80,
+html.light .border-zinc-700,
+html.light .border-zinc-700\/50 {
+  border-color: #d1d5db !important;
+}
+
+/* Custom items override */
+html.light ::selection {
+  background-color: #e4e4e7 !important;
+  color: #09090b !important;
+}
+
+html.light .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+}
+html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+/* Base dark mode utility styles */
 @layer utilities {
   .custom-scrollbar::-webkit-scrollbar {
     width: 6px;

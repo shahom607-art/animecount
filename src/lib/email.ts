@@ -17,9 +17,9 @@ export async function sendVerificationEmail({ to, url, name }: { to: string; url
     return;
   }
   await transporter.sendMail({
-    from: process.env.EMAIL_FROM || 'AniTime <noreply@animetime.app>',
+    from: process.env.EMAIL_FROM || 'AnimeCount <noreply@animetime.app>',
     to,
-    subject: 'Verify your AniTime account',
+    subject: 'Verify your AnimeCount account',
     html: getVerificationEmailHtml(url, name),
   });
 }
@@ -30,9 +30,9 @@ export async function sendResetPasswordEmail({ to, url }: { to: string; url: str
     return;
   }
   await transporter.sendMail({
-    from: process.env.EMAIL_FROM || 'AniTime <noreply@animetime.app>',
+    from: process.env.EMAIL_FROM || 'AnimeCount <noreply@animetime.app>',
     to,
-    subject: 'Reset your AniTime password',
+    subject: 'Reset your AnimeCount password',
     html: getResetPasswordEmailHtml(url),
   });
 }
@@ -43,9 +43,9 @@ export async function sendWelcomeEmail({ to, name }: { to: string; name: string 
     return;
   }
   await transporter.sendMail({
-    from: process.env.EMAIL_FROM || 'AniTime <noreply@animetime.app>',
+    from: process.env.EMAIL_FROM || 'AnimeCount <noreply@animetime.app>',
     to,
-    subject: 'Welcome to AniTime!',
+    subject: 'Welcome to AnimeCount!',
     html: getWelcomeEmailHtml(name),
   });
 }

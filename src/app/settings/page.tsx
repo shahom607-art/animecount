@@ -4,13 +4,15 @@ import React, { useState } from 'react';
 import { Navbar } from '@/components/layout/navbar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Shield, Key, Trash2, Moon, Sun, Monitor } from 'lucide-react';
+import { Key, Trash2, Moon, Sun, Monitor } from 'lucide-react';
 import { useSession, signOut } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import { useTheme } from '@/components/theme-provider';
 
 export default function SettingsPage() {
   const { data: session } = useSession();
   const router = useRouter();
+  const { theme, setTheme } = useTheme();
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [message, setMessage] = useState<string | null>(null);
@@ -33,6 +35,11 @@ export default function SettingsPage() {
     setNewPassword('');
   };
 
+  const themeOptions: { value: 'dark' | 'light'; label: string; icon: React.ReactNode }[] = [
+    { value: 'dark', label: 'Dark Mode', icon: <Moon className="w-4 h-4" /> },
+    { value: 'light', label: 'Light Mode', icon: <Sun className="w-4 h-4" /> },
+  ];
+
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans">
       <Navbar />
@@ -48,16 +55,20 @@ export default function SettingsPage() {
           <h2 className="text-lg font-bold text-white flex items-center gap-2">
             <Moon className="w-5 h-5 text-zinc-400" /> Appearance Theme
           </h2>
-          <div className="grid grid-cols-3 gap-3">
-            <button className="flex items-center justify-center gap-2 p-3 rounded-2xl bg-zinc-800 text-white font-medium border border-zinc-700">
-              <Moon className="w-4 h-4" /> Dark Mode
-            </button>
-            <button className="flex items-center justify-center gap-2 p-3 rounded-2xl bg-zinc-900/60 text-zinc-400 font-medium border border-zinc-800/60 hover:text-white transition-colors">
-              <Sun className="w-4 h-4" /> Light Mode
-            </button>
-            <button className="flex items-center justify-center gap-2 p-3 rounded-2xl bg-zinc-900/60 text-zinc-400 font-medium border border-zinc-800/60 hover:text-white transition-colors">
-              <Monitor className="w-4 h-4" /> System
-            </button>
+          <div className="grid grid-cols-2 gap-3">
+            {themeOptions.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => setTheme(opt.value)}
+                className={`flex items-center justify-center gap-2 p-3 rounded-2xl font-medium border transition-all ${
+                  theme === opt.value
+                    ? 'bg-zinc-800 text-white border-zinc-700 shadow-md'
+                    : 'bg-zinc-900/60 text-zinc-400 border-zinc-800/60 hover:text-white hover:border-zinc-700'
+                }`}
+              >
+                {opt.icon} {opt.label}
+              </button>
+            ))}
           </div>
         </section>
 

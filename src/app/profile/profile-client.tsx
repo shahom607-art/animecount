@@ -17,7 +17,7 @@ export function ProfileClient({ user, entries, stats }: { user: any; entries: an
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `anitime-export-${user.name || 'user'}.json`;
+    a.download = `animecount-export-${user.name || 'user'}.json`;
     a.click();
   };
 
@@ -27,7 +27,7 @@ export function ProfileClient({ user, entries, stats }: { user: any; entries: an
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `anitime-export-${user.name || 'user'}.csv`;
+    a.download = `animecount-export-${user.name || 'user'}.csv`;
     a.click();
   };
 

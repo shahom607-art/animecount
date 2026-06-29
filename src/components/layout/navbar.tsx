@@ -15,7 +15,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch?: () => void }) {
           <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-zinc-100 to-zinc-400 flex items-center justify-center text-zinc-950 font-bold text-lg group-hover:scale-105 transition-transform">
             <Clock className="w-4 h-4 stroke-[2.5]" />
           </div>
-          <span className="font-semibold text-lg tracking-tight text-zinc-100">AniTime</span>
+          <span className="font-semibold text-lg tracking-tight text-zinc-100">AnimeCount</span>
         </Link>
 
         <div className="flex items-center gap-3">

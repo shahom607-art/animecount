@@ -16,9 +16,9 @@ export function getVerificationEmailHtml(url: string, name?: string) {
 </head>
 <body>
   <div class="container">
-    <div class="logo">AniTime</div>
+    <div class="logo">AnimeCount</div>
     <div class="title">Verify your email address</div>
-    <div class="text">Hello ${name || 'there'}, welcome to AniTime. Please click the button below to verify your email and activate your account.</div>
+    <div class="text">Hello ${name || 'there'}, welcome to AnimeCount. Please click the button below to verify your email and activate your account.</div>
     <a href="${url}" class="button">Verify Email</a>
     <div class="footer">If you did not request this email, you can safely ignore it.</div>
   </div>
@@ -45,9 +45,9 @@ export function getResetPasswordEmailHtml(url: string) {
 </head>
 <body>
   <div class="container">
-    <div class="logo">AniTime</div>
+    <div class="logo">AnimeCount</div>
     <div class="title">Reset your password</div>
-    <div class="text">We received a request to reset your AniTime account password. Click below to choose a new password.</div>
+    <div class="text">We received a request to reset your AnimeCount account password. Click below to choose a new password.</div>
     <a href="${url}" class="button">Reset Password</a>
     <div class="footer">If you did not request a password reset, please ignore this message.</div>
   </div>
@@ -73,9 +73,9 @@ export function getWelcomeEmailHtml(name: string) {
 </head>
 <body>
   <div class="container">
-    <div class="logo">AniTime</div>
-    <div class="title">Welcome to AniTime, ${name}!</div>
-    <div class="text">Thank you for joining AniTime — the minimal, elegant anime watch time tracker. Start adding your favorite series and watch your lifetime statistics accumulate automatically.</div>
+    <div class="logo">AnimeCount</div>
+    <div class="title">Welcome to AnimeCount, ${name}!</div>
+    <div class="text">Thank you for joining AnimeCount — the minimal, elegant anime watch time tracker. Start adding your favorite series and watch your lifetime statistics accumulate automatically.</div>
     <div class="footer">Happy tracking!</div>
   </div>
 </body>
