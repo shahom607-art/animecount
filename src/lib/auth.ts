@@ -9,9 +9,12 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: false, // Set to true for strict production email verification
+    requireEmailVerification: false,
     async sendResetPassword({ user, url }) {
-      await sendResetPasswordEmail({ to: user.email, url });
+      // Ensure the reset URL always uses the correct production domain
+      const baseUrl = process.env.BETTER_AUTH_URL || 'http://localhost:3000';
+      const fixedUrl = url.replace(/^https?:\/\/[^/]+/, baseUrl.replace(/\/$/, ''));
+      await sendResetPasswordEmail({ to: user.email, url: fixedUrl });
     },
   },
   emailVerification: {
