@@ -81,11 +81,8 @@ export default function RootLayout({
           (function() {
             try {
               var theme = localStorage.getItem('animecount-theme') || 'dark';
-              document.documentElement.classList.remove('dark', 'light');
               document.documentElement.classList.add(theme);
-              if (theme === 'light') {
-                document.body && (document.body.style.backgroundColor = '#ffffff');
-              }
+              if (theme === 'light') document.documentElement.classList.remove('dark');
             } catch(e) {}
           })();
         `}} />

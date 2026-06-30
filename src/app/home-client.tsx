@@ -96,19 +96,14 @@ export function HomeClient({ session, initialEntries, initialStats }: { session:
       <main className="max-w-5xl mx-auto px-6 pt-12 pb-24 space-y-20">
         {/* HERO / SEARCH & WATCH TIME COUNTER */}
         <section className="text-center space-y-8 py-4">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="space-y-3"
-          >
+          <div className="space-y-3">
             <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
               Count every minute.
             </h1>
             <p className="text-zinc-400 text-lg sm:text-xl max-w-lg mx-auto font-normal">
               Minimal, elegant anime watch time tracking.
             </p>
-          </motion.div>
+          </div>
 
           {/* Search Trigger Bar */}
           <motion.div
