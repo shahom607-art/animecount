@@ -20,9 +20,13 @@ export default function ResetPasswordPage() {
     setLoading(true);
     setError(null);
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token') || '';
+
     try {
       const { error: resetError } = await authClient.resetPassword({
         newPassword,
+        token,
       });
 
       if (resetError) {
