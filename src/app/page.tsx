@@ -45,5 +45,36 @@ export default async function HomePage() {
     stats = await getUserStatistics(session.user.id);
   }
 
-  return <HomeClient session={session} initialEntries={watchEntries} initialStats={stats} />;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'AnimeCount',
+    url: 'https://animecount.vercel.app',
+    description:
+      'AnimeCount is a free, minimal anime watch time tracker. Count every episode, hour, and day you have spent watching anime. Track your lifetime anime stats elegantly.',
+    applicationCategory: 'EntertainmentApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'AnimeCount',
+      url: 'https://animecount.vercel.app',
+    },
+    keywords:
+      'anime watch time tracker, animecount, anime time counter, count anime episodes, anime hours tracker, anime stats, anime tracker',
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <HomeClient session={session} initialEntries={watchEntries} initialStats={stats} />
+    </>
+  );
 }

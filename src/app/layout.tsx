@@ -9,19 +9,63 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'AnimeCount — Minimal Anime Watch Time Tracker',
-  description: 'Count every minute you spent watching anime with an elegant, modern, and high-performance tracker.',
+  metadataBase: new URL('https://animecount.vercel.app'),
+  title: {
+    default: 'AnimeCount — Track Your Anime Watch Time',
+    template: '%s | AnimeCount',
+  },
+  description:
+    'AnimeCount is a free, minimal anime watch time tracker. Count every episode, hour, and day you have spent watching anime. Track your lifetime anime stats elegantly.',
+  keywords: [
+    'anime watch time tracker',
+    'animecount',
+    'anime time counter',
+    'count anime episodes',
+    'anime hours tracker',
+    'anime watchlist',
+    'anime stats',
+    'how much time spent watching anime',
+    'anime tracker',
+    'anime episode counter',
+    'lifetime anime stats',
+    'anime time calculator',
+    'anime progress tracker',
+  ],
+  authors: [{ name: 'AnimeCount', url: 'https://animecount.vercel.app' }],
+  creator: 'AnimeCount',
+  publisher: 'AnimeCount',
+  category: 'Entertainment',
+  applicationName: 'AnimeCount',
+  alternates: {
+    canonical: 'https://animecount.vercel.app',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
-    title: 'AnimeCount — Minimal Anime Watch Time Tracker',
-    description: 'Count every minute you spent watching anime.',
-    url: 'https://animetime.app',
+    title: 'AnimeCount — Track Your Anime Watch Time',
+    description:
+      'Free minimal anime watch time tracker. Count every episode and hour spent watching anime. See your lifetime stats at a glance.',
+    url: 'https://animecount.vercel.app',
     siteName: 'AnimeCount',
     type: 'website',
+    locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AnimeCount — Anime Watch Time Tracker',
-    description: 'Minimalist lifetime anime stats calculation.',
+    title: 'AnimeCount — Track Your Anime Watch Time',
+    description:
+      'Free minimal anime watch time tracker. Count every episode and hour spent watching anime.',
+    creator: '@animecount',
+    site: '@animecount',
   },
 };
 
