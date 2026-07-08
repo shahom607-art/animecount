@@ -8,33 +8,31 @@ datasource db {
 }
 
 model User {
-  id            String          @id @default(cuid())
-  name          String?
-  email         String          @unique
-  emailVerified Boolean         @default(false)
-  image         String?
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-
-  sessions      Session[]
-  accounts      Account[]
-  watchEntries  WatchEntry[]
-  favorites     Favorite[]
+  id             String          @id @default(cuid())
+  name           String?
+  email          String          @unique
+  emailVerified  Boolean         @default(false)
+  image          String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  accounts       Account[]
+  favorites      Favorite[]
   recentSearches RecentSearch[]
-  statistics    UserStatistics?
+  sessions       Session[]
+  statistics     UserStatistics?
+  watchEntries   WatchEntry[]
 }
 
 model Session {
-  id           String   @id @default(cuid())
-  userId       String
-  token        String   @unique
-  expiresAt    DateTime
-  ipAddress    String?
-  userAgent    String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Account {
@@ -44,14 +42,16 @@ model Account {
   providerId            String
   accessToken           String?
   refreshToken          String?
+  idToken               String?
   accessTokenExpiresAt  DateTime?
   refreshTokenExpiresAt DateTime?
   scope                 String?
   password              String?
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
-
   user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, accountId])
 }
 
 model Verification {
@@ -64,49 +64,40 @@ model Verification {
 }
 
 model PasswordReset {
-  id         String   @id @default(cuid())
-  email      String
-  token      String   @unique
-  expiresAt  DateTime
-  createdAt  DateTime @default(now())
+  id        String   @id @default(cuid())
+  email     String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
 }
 
 model Anime {
-  id             String       @id @default(cuid())
-  anilistId      Int?         @unique
-  malId          Int?         @unique
-  titleEnglish   String?
-  titleJapanese  String?
-  titleRomaji    String
-  posterImage    String?
-  bannerImage    String?
-  description    String?
-  genres         String[]     @default([])
-  studios        String[]     @default([])
-  episodes       Int          @default(12)
-  duration       Int          @default(24) // in minutes
-  season         String?
-  year           Int?
-  status         String?
-  popularity     Int          @default(0)
-  averageScore   Int          @default(0)
-  meanScore      Int          @default(0)
-  synonyms       String[]     @default([])
-  trailerUrl     String?
-  coverColor     String?
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-
-  watchEntries   WatchEntry[]
-  favorites      Favorite[]
-}
-
-enum WatchStatus {
-  COMPLETED
-  WATCHING
-  PLAN_TO_WATCH
-  DROPPED
-  REWATCHING
+  id            String       @id @default(cuid())
+  anilistId     Int?         @unique
+  malId         Int?         @unique
+  titleEnglish  String?
+  titleJapanese String?
+  titleRomaji   String
+  posterImage   String?
+  bannerImage   String?
+  description   String?
+  genres        String[]     @default([])
+  studios       String[]     @default([])
+  episodes      Int          @default(12)
+  duration      Int          @default(24)
+  season        String?
+  year          Int?
+  status        String?
+  popularity    Int          @default(0)
+  averageScore  Int          @default(0)
+  meanScore     Int          @default(0)
+  synonyms      String[]     @default([])
+  trailerUrl    String?
+  coverColor    String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  favorites     Favorite[]
+  watchEntries  WatchEntry[]
 }
 
 model WatchEntry {
@@ -120,9 +111,8 @@ model WatchEntry {
   isPinned        Boolean     @default(false)
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
-
-  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   anime           Anime       @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, animeId])
 }
@@ -132,9 +122,8 @@ model Favorite {
   userId    String
   animeId   String
   createdAt DateTime @default(now())
-
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   anime     Anime    @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, animeId])
 }
@@ -144,28 +133,34 @@ model RecentSearch {
   userId    String
   query     String
   createdAt DateTime @default(now())
-
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model UserStatistics {
-  id                  String   @id @default(cuid())
-  userId              String   @unique
-  totalAnime          Int      @default(0)
-  completedAnime      Int      @default(0)
-  watchingAnime       Int      @default(0)
-  planToWatchAnime    Int      @default(0)
-  droppedAnime        Int      @default(0)
-  rewatchingAnime     Int      @default(0)
-  totalEpisodes       Int      @default(0)
-  totalMinutes        Int      @default(0)
-  averageRating       Float    @default(0)
-  watchingStreak      Int      @default(0)
-  lastWatchedAt       DateTime?
-  favoriteGenre       String?
-  favoriteStudio      String?
-  mostWatchedYear     Int?
-  updatedAt           DateTime @updatedAt
+  id               String    @id @default(cuid())
+  userId           String    @unique
+  totalAnime       Int       @default(0)
+  completedAnime   Int       @default(0)
+  watchingAnime    Int       @default(0)
+  planToWatchAnime Int       @default(0)
+  droppedAnime     Int       @default(0)
+  rewatchingAnime  Int       @default(0)
+  totalEpisodes    Int       @default(0)
+  totalMinutes     Int       @default(0)
+  averageRating    Float     @default(0)
+  watchingStreak   Int       @default(0)
+  lastWatchedAt    DateTime?
+  favoriteGenre    String?
+  favoriteStudio   String?
+  mostWatchedYear  Int?
+  updatedAt        DateTime  @updatedAt
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 
-  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+enum WatchStatus {
+  COMPLETED
+  WATCHING
+  PLAN_TO_WATCH
+  DROPPED
+  REWATCHING
 }
