@@ -2,22 +2,6 @@
 
 AnimeCount is a minimal, elegant watch-time calculator and database tracking system designed to calculate and visualize the exact time (in days, hours, and minutes) spent watching anime.
 
----
-
-## 📸 Screenshots
-
-| Landing Page (Logged Out) | Dashboard & Tracking (Logged In) |
-| --- | --- |
-| ![Landing Page Placeholder](https://placehold.co/600x400/18181b/ffffff?text=Landing+Page+Dashboard) | ![Dashboard Placeholder](https://placehold.co/600x400/18181b/ffffff?text=Dashboard+and+Quick+Increments) |
-| *Clean call-to-action inviting users to begin tracking.* | *Interface for quick tracking, pinning, and updating watch list entries.* |
-
-| Detailed Profile & Stats | Mobile Responsive View |
-| --- | --- |
-| ![Profile Stats Placeholder](https://placehold.co/600x400/18181b/ffffff?text=Profile+Analytics+and+History) | ![Mobile View Placeholder](https://placehold.co/300x500/18181b/ffffff?text=Mobile+View) |
-| *Lifetime statistics, average ratings, and data portability controls.* | *Responsive layout scaled for viewing on mobile devices.* |
-
----
-
 ## ✨ Features
 
 - **Precision Watch Time Metrics:** Dynamically computes exact watch time metrics (scalable from minutes and hours to days, weeks, months, and years) based on completed episodes and individual show durations rather than just basic counter increments.
